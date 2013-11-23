@@ -93,7 +93,7 @@ public class OI {
     private void tieButtons() {
         raise.whileHeld(new RaiseShooter());
         lower.whileHeld(new LowerShooter());
-        aim.whenPressed(new Aim());
+        // aim.whenPressed(new Aim());
         
     }
     
