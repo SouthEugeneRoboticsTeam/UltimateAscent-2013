@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.templates.commands.AimSeq;
 import edu.wpi.first.wpilibj.templates.commands.LowerShooter;
 import edu.wpi.first.wpilibj.templates.commands.RaiseShooter;
 
@@ -93,7 +94,7 @@ public class OI {
     private void tieButtons() {
         raise.whileHeld(new RaiseShooter());
         lower.whileHeld(new LowerShooter());
-        aim.whenPressed(new Aim());
+        aim.whenPressed(new AimSeq());
         
     }
     
