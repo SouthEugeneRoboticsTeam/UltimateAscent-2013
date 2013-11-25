@@ -8,7 +8,7 @@ package edu.wpi.first.wpilibj.templates.commands;
 public class AimH extends CommandBase {
 
     public AimH() {
-        requires(firingsub);
+        requires(drivesub);
     }
 
     // Called just before this Command runs the first time

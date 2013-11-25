@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.templates.commands.AimSeq;
 import edu.wpi.first.wpilibj.templates.commands.LowerShooter;
 import edu.wpi.first.wpilibj.templates.commands.RaiseShooter;
 
@@ -81,7 +82,7 @@ public class OI {
         raise = new JoystickButton(shootStick, 3);
         lower = new JoystickButton(shootStick, 2);
         fire = new JoystickButton(shootStick, 4);
-        aim= new JoystickButton(shootStick, 5);
+        aim = new JoystickButton(shootStick, 5);
         compressor = new JoystickButton(shootStick, 10);
         changedriveleft = new JoystickButton(leftStick, 1);
         changedriveright = new JoystickButton(rightstick, 1);
@@ -93,8 +94,8 @@ public class OI {
     private void tieButtons() {
         raise.whileHeld(new RaiseShooter());
         lower.whileHeld(new LowerShooter());
-        aim.whenPressed(new Aim());
-        
+        aim.whenPressed(new AimSeq());
+               
     }
     
     public Joystick getLeftStick() {

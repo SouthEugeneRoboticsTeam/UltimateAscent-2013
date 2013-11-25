@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.templates.OI;
+import edu.wpi.first.wpilibj.templates.subsystems.CameraSub;
 import edu.wpi.first.wpilibj.templates.subsystems.DriveSub;
 import edu.wpi.first.wpilibj.templates.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.templates.subsystems.FiringSub;
@@ -19,6 +20,7 @@ public abstract class CommandBase extends Command {
     public static OI oi;
     public static FiringSub firingsub;
     public static DriveSub drivesub;
+    public static CameraSub camerasub;
     
     // Create a single static instance of all of your subsystems
     public static ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
@@ -30,6 +32,7 @@ public abstract class CommandBase extends Command {
         // yet. Thus, their requires() statements may grab null pointers. Bad
         // news. Don't move it.
         oi = OI.getInstance();
+        camerasub = new CameraSub();
         firingsub = new FiringSub();
         drivesub = new DriveSub();
         // Show what command your subsystem is running on the SmartDashboard
