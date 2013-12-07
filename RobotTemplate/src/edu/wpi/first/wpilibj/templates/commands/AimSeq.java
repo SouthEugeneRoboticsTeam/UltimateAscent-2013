@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AimSeq extends CommandGroup {
 
     public AimSeq() {
-        addParallel(new AimV());
         addParallel(new AimH());
+        addSequential(new AimV());
         addParallel(new SpinUpShooter());
     }
 

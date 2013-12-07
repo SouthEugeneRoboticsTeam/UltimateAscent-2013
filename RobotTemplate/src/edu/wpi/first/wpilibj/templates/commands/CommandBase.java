@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.templates.subsystems.CameraSub;
 import edu.wpi.first.wpilibj.templates.subsystems.DriveSub;
 import edu.wpi.first.wpilibj.templates.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.templates.subsystems.FiringSub;
+import edu.wpi.first.wpilibj.templates.subsystems.PneumaticSub;
+
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -21,6 +23,7 @@ public abstract class CommandBase extends Command {
     public static FiringSub firingsub;
     public static DriveSub drivesub;
     public static CameraSub camerasub;
+    public static PneumaticSub pneumaticsub;
     
     // Create a single static instance of all of your subsystems
     public static ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
@@ -31,10 +34,13 @@ public abstract class CommandBase extends Command {
         // which commands extend), subsystems are not guaranteed to be
         // yet. Thus, their requires() statements may grab null pointers. Bad
         // news. Don't move it.
-        oi = OI.getInstance();
+        pneumaticsub = new PneumaticSub();
         camerasub = new CameraSub();
         firingsub = new FiringSub();
         drivesub = new DriveSub();
+        oi = OI.getInstance();
+        
+        
         // Show what command your subsystem is running on the SmartDashboard
         SmartDashboard.putData(exampleSubsystem);
     }

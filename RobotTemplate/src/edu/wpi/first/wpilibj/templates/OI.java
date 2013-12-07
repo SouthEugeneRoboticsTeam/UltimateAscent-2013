@@ -6,7 +6,13 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.templates.commands.AimSeq;
+import edu.wpi.first.wpilibj.templates.commands.ChangeDriveMode;
+import edu.wpi.first.wpilibj.templates.commands.Lift;
+import edu.wpi.first.wpilibj.templates.commands.Load;
+import edu.wpi.first.wpilibj.templates.commands.LowerMin;
 import edu.wpi.first.wpilibj.templates.commands.LowerShooter;
+import edu.wpi.first.wpilibj.templates.commands.Pressurize;
+import edu.wpi.first.wpilibj.templates.commands.RaiseMax;
 import edu.wpi.first.wpilibj.templates.commands.RaiseShooter;
 
 /**
@@ -49,7 +55,7 @@ public class OI {
     //Joysticks
     Joystick shootStick;
     Joystick leftStick;
-    Joystick rightstick;
+    Joystick rightStick;
     
     //Buttons
     Button raise;
@@ -61,6 +67,8 @@ public class OI {
     Button changedriveright;
     Button hooksleft;
     Button hooksright;
+    Button raisemax;
+    Button lowermin;
     
     protected static OI instance;
     
@@ -74,28 +82,38 @@ public class OI {
     private OI() {
         shootStick = new Joystick(RobotMap.shootStickPort);
         leftStick = new Joystick(RobotMap.leftStickPort);
-        rightstick = new Joystick(RobotMap.rightStickPort);
+        rightStick = new Joystick(RobotMap.rightStickPort);
         initButtons();
     }
     
     private void initButtons() {
         raise = new JoystickButton(shootStick, 3);
         lower = new JoystickButton(shootStick, 2);
-        fire = new JoystickButton(shootStick, 4);
-        aim = new JoystickButton(shootStick, 5);
-        compressor = new JoystickButton(shootStick, 10);
+        lowermin = new JoystickButton(shootStick, 10);
+        raisemax = new JoystickButton(shootStick, 11);
+        fire = new JoystickButton(shootStick, 5);
+        aim = new JoystickButton(shootStick, 4);
+        compressor = new JoystickButton(shootStick, 9);
         changedriveleft = new JoystickButton(leftStick, 1);
-        changedriveright = new JoystickButton(rightstick, 1);
-        hooksleft = new JoystickButton(leftStick, 10);
-        hooksright = new JoystickButton(rightstick, 10);
-        
+        changedriveright = new JoystickButton(rightStick, 1);
+        hooksleft = new JoystickButton(leftStick, 5);
+        hooksright = new JoystickButton(rightStick, 4);
+ 
         tieButtons();
     }
     private void tieButtons() {
         raise.whileHeld(new RaiseShooter());
         lower.whileHeld(new LowerShooter());
         aim.whenPressed(new AimSeq());
-               
+        lowermin.whenPressed(new LowerMin());
+        raisemax.whenPressed(new RaiseMax());
+        fire.whenPressed(new Load());
+        changedriveleft.whenPressed(new ChangeDriveMode());
+        changedriveright.whenPressed(new ChangeDriveMode());
+        compressor.whenPressed(new Pressurize());
+        hooksleft.whenPressed(new Lift());
+        hooksright.whenPressed(new Lift());
+        
     }
     
     public Joystick getLeftStick() {
@@ -103,7 +121,11 @@ public class OI {
     }
     
     public Joystick getRightStick() {
-        return rightstick;
+        return rightStick;
+    }
+    
+    public Joystick getShootStick() {
+        return shootStick;
     }
 }
 

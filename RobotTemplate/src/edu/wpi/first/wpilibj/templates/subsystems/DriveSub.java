@@ -26,15 +26,17 @@ public class DriveSub extends Subsystem {
             setDefaultCommand(new TankDrive());
         } else {
             setDefaultCommand(new ArcadeDrive());
+            arcadedrive = true;
+            System.out.println("ArcadeDrive");
         }
     }
     
     public void tank() {
-        drive.tankDrive(OI.getInstance().getLeftStick().getY(), OI.getInstance().getRightStick().getY());
+        drive.tankDrive(OI.getInstance().getRightStick().getY(), OI.getInstance().getLeftStick().getY());
     }
     
     public void arcade() {
-        drive.arcadeDrive(OI.getInstance().getLeftStick().getY(), OI.getInstance().getRightStick().getY());
+        drive.arcadeDrive(OI.getInstance().getLeftStick().getY(), -OI.getInstance().getLeftStick().getX());
     }
     
     public void initDefaultCommand() {

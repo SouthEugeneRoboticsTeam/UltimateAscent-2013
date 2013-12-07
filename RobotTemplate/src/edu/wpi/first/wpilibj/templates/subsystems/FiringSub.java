@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
@@ -20,13 +21,14 @@ public class FiringSub extends Subsystem {
     CANJaguar altitude;
     Victor loader;
     AnalogChannel altitudePot;
-    DigitalInput LoadLimit; 
+    DigitalInput loadLimit; 
     
     public FiringSub() throws CANTimeoutException {
         shooter = new CANJaguar(RobotMap.shooterID);
         altitude = new CANJaguar(RobotMap.altitudeID);
-        //loader = new Victor(RobotMap.loaderID);
+        loader = new Victor(RobotMap.loaderID);
         altitudePot = new AnalogChannel(RobotMap.altitudePotPort);
+        loadLimit = new DigitalInput(RobotMap.loadLimitID);
     }
     
     public void raiseMax() throws CANTimeoutException {
@@ -67,7 +69,6 @@ public class FiringSub extends Subsystem {
         while (altitude.getOutputVoltage() > .1);
         altitude.changeControlMode(CANJaguar.ControlMode.kVoltage);
         stopAltitude();
-        
     }
     
     public void stopAltitude() throws CANTimeoutException {
@@ -83,9 +84,9 @@ public class FiringSub extends Subsystem {
     }
     
     
-//    public void load() {
-//        loader.set(1);
-//    }
+    public void load() {
+        loader.set(1);
+    }
     
     public void spinUp(double x) throws CANTimeoutException {
         shooter.setX(x);
@@ -98,6 +99,10 @@ public class FiringSub extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public boolean getLoadLimit() {
+        return loadLimit.get();
     }
 }
 
