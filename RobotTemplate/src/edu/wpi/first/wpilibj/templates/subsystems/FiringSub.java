@@ -3,6 +3,7 @@ package edu.wpi.first.wpilibj.templates.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogChannel;
 import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
@@ -12,17 +13,19 @@ import edu.wpi.first.wpilibj.templates.RobotMap;
 
 /**
  *
+ * @author Aubrey
  */
 public class FiringSub extends Subsystem {
     CANJaguar shooter;
     CANJaguar altitude;
     Victor loader;
     AnalogChannel altitudePot;
+    DigitalInput LoadLimit; 
     
     public FiringSub() throws CANTimeoutException {
         shooter = new CANJaguar(RobotMap.shooterID);
         altitude = new CANJaguar(RobotMap.altitudeID);
-        loader = new Victor(RobotMap.loaderID);
+        //loader = new Victor(RobotMap.loaderID);
         altitudePot = new AnalogChannel(RobotMap.altitudePotPort);
     }
     
@@ -30,29 +33,36 @@ public class FiringSub extends Subsystem {
         while(altitudePot.getVoltage() < RobotMap.maxAltitude) {
             raise();
         }
-        stopAltitude();
     }
     
-    public void lowerMax() throws CANTimeoutException {
+    public void lowerMin() throws CANTimeoutException {
         while(altitudePot.getVoltage() > RobotMap.minAltitude) {
             lower();
         }
-        stopAltitude();
     }
 
     public void raise() throws CANTimeoutException {
-        altitude.setX(1);
+        if (altitudePot.getVoltage() < RobotMap.maxAltitude) {
+            altitude.setX(1);
+        } else {
+            altitude.setX(0);
+        }
+            
     }
     
     public void lower() throws CANTimeoutException {
-        altitude.setX(-1);
+       if (altitudePot.getVoltage() > RobotMap.minAltitude) {
+            altitude.setX(-1);
+        } else {
+            altitude.setX(0);
+        }
     }
     
     public void altitudeSetpoint() throws CANTimeoutException {
         altitude.changeControlMode(CANJaguar.ControlMode.kPosition);
         altitude.setPositionReference(CANJaguar.PositionReference.kPotentiometer);
         altitude.setPID(0, 0, 0);
-        double setpoint = SmartDashboard.getDouble("setpoint", RobotMap.midAltitude);
+        double setpoint = SmartDashboard.getNumber("setpoint", RobotMap.midAltitude);
         altitude.setX(setpoint);
         while (altitude.getOutputVoltage() > .1);
         altitude.changeControlMode(CANJaguar.ControlMode.kVoltage);
@@ -68,19 +78,21 @@ public class FiringSub extends Subsystem {
         shooter.setX(0);
     }
     
-    public void stopLoader() throws CANTimeoutException {
+    public void stopLoader() {
         loader.set(0);
     }
     
     
-    public void load() throws CANTimeoutException {
-        loader.set(1);
-        Timer.delay(.5);
-        stopLoader();
+//    public void load() {
+//        loader.set(1);
+//    }
+    
+    public void spinUp(double x) throws CANTimeoutException {
+        shooter.setX(x);
     }
     
-    public void spinUp() throws CANTimeoutException {
-        shooter.setX(SmartDashboard.getDouble("shooterspeed", 0));
+    public double getAltitudePot() {
+        return altitudePot.getVoltage();
     }
     
     public void initDefaultCommand() {
