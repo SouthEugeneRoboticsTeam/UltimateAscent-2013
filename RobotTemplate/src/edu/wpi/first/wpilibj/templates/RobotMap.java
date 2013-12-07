@@ -17,19 +17,25 @@ public class RobotMap {
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
     
-    public static final int leftMotor1ID = 0;
-    public static final int leftMotor2ID = 0;
-    public static final int rightMotor1ID = 0;
-    public static final int rightMotor2ID = 0;
+    public static final int leftMotor1ID = 15;
+    public static final int leftMotor2ID = 16;
+    public static final int rightMotor1ID = 14;
+    public static final int rightMotor2ID = 17;
+    public static final int loadLimitID = 1;
     public static final int loaderID = 1;
-    public static final int altitudeID = 0;
-    public static final int lifterID = 0;
-    public static final int shooterID = 0;
-    public static final int altitudePotPort = 0;
+    public static final int altitudeID = 11;
+    public static final int lifterChannel = 1;
+    public static final int shooterID = 12;
+    public static final int altitudePotPort = 1;
     public static final int shootStickPort = 3;
     public static final int leftStickPort = 1;
     public static final int rightStickPort = 2;
-    public static final float maxAltitude = 0;
-    public static final float minAltitude = 0;
-    public static final float midAltitude = (maxAltitude + minAltitude)/2;
+    public static final double maxAltitude = 3.284;
+    public static final double minAltitude = 1.6;
+    public static final double midAltitude = (maxAltitude + minAltitude)/2;
+    public static final int pressureSwitchPort = 2;
+    public static final int compressorChannel = 1;
+    public static float xDirection;
+    public static float yDirection;
+    public static float power;
 }
