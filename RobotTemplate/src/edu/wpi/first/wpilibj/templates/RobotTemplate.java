@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.templates.commands.AimV;
 import edu.wpi.first.wpilibj.templates.commands.CommandBase;
 import edu.wpi.first.wpilibj.templates.commands.ExampleCommand;
 
@@ -39,7 +40,7 @@ public class RobotTemplate extends IterativeRobot {
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }
-        autonomousCommand = new ExampleCommand();
+        autonomousCommand = new AimV();
     }
 
     public void autonomousInit() {

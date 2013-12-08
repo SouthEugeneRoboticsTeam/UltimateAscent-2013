@@ -11,20 +11,13 @@
             <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/subsystems/DriveSub.java</file>
             <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/subsystems/FiringSub.java</file>
             <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/commands/AimSeq.java</file>
-            <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/commands/Load.java</file>
-            <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/commands/LowerMin.java</file>
             <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/commands/AimV.java</file>
-            <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/commands/Pressurize.java</file>
             <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/commands/TankDrive.java</file>
             <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/RobotTemplate.java</file>
             <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/commands/ExampleCommand.java</file>
             <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/OI.java</file>
             <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/commands/RaiseShooter.java</file>
-            <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/commands/Lift.java</file>
-            <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/subsystems/CameraSub.java</file>
-            <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/subsystems/PneumaticSub.java</file>
             <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/commands/LowerShooter.java</file>
-            <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/commands/RaiseMax.java</file>
             <file>file:/C:/Users/Aubrey/Documents/NetBeansProjects/sert-excalibur-2013/RobotTemplate/src/edu/wpi/first/wpilibj/templates/RobotMap.java</file>
         </group>
     </open-files>

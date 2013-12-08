@@ -20,11 +20,7 @@ public class ExampleCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-       if (firingsub.getLoadLimit()) {
-           System.out.println("***********************Yes");
-       } else {
-           System.out.println("&&&&&&&&&&&&&&&&&&&&&&&No");
-       }
+       
     }
 
     // Make this return true when this Command no longer needs to run execute()
