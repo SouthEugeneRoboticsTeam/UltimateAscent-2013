@@ -24,6 +24,7 @@ public class DriveSub extends Subsystem {
     public void changeDriveMode() {
         if (arcadedrive) {
             setDefaultCommand(new TankDrive());
+            arcadedrive = false;
         } else {
             setDefaultCommand(new ArcadeDrive());
             arcadedrive = true;

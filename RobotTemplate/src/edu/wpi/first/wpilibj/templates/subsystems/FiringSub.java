@@ -88,7 +88,6 @@ public class FiringSub extends Subsystem {
         
         altitudePID.setSetpoint(setpoint);
         altitude.setX(altitudePID.get());
-        System.out.println(altitudePID.getError());
     }
     
     public boolean targetAquired() {

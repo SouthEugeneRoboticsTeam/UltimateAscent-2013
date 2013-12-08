@@ -14,14 +14,12 @@ public class ChangeDriveMode extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+            drivesub.changeDriveMode();
+            finish = true;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if (!finish) {
-            drivesub.changeDriveMode();
-            finish = true;
-        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
