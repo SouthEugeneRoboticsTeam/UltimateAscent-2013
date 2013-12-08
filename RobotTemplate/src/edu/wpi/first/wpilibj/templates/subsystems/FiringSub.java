@@ -38,15 +38,11 @@ public class FiringSub extends Subsystem {
     }
     
     public void raiseMax() throws CANTimeoutException {
-        while(altitudePot.getVoltage() < RobotMap.maxAltitude) {
             raise();
-        }
     }
     
     public void lowerMin() throws CANTimeoutException {
-        while(altitudePot.getVoltage() > RobotMap.minAltitude) {
             lower();
-        }
     }
 
     public void raise() throws CANTimeoutException {
