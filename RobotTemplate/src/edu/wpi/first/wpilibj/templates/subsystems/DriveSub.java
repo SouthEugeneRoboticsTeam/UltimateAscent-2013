@@ -7,8 +7,7 @@ import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.RobotMap;
-import edu.wpi.first.wpilibj.templates.commands.ArcadeDrive;
-import edu.wpi.first.wpilibj.templates.commands.TankDrive;
+import edu.wpi.first.wpilibj.templates.commands.Drive;
 
 /**
  *
@@ -23,25 +22,25 @@ public class DriveSub extends Subsystem {
     
     public void changeDriveMode() {
         if (arcadedrive) {
-            setDefaultCommand(new TankDrive());
             arcadedrive = false;
+            System.out.println("Tank Drive");
         } else {
-            setDefaultCommand(new ArcadeDrive());
             arcadedrive = true;
-            System.out.println("ArcadeDrive");
+            System.out.println("Arcade Drive");
         }
     }
     
-    public void tank() {
-        drive.tankDrive(OI.getInstance().getRightStick().getY(), OI.getInstance().getLeftStick().getY());
-    }
-    
-    public void arcade() {
-        drive.arcadeDrive(OI.getInstance().getLeftStick().getY(), -OI.getInstance().getLeftStick().getX());
+    public void drive() {
+        if (arcadedrive) {
+            drive.tankDrive(OI.getInstance().getLeftStick(), OI.getInstance().getRightStick());
+        } else {
+            drive.arcadeDrive(OI.getInstance().getLeftStick());
+        }
     }
     
     public void initDefaultCommand() {
-        setDefaultCommand(new ArcadeDrive());
+        setDefaultCommand(new Drive());
     }
 }
+
 
