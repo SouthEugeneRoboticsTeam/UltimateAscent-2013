@@ -73,11 +73,11 @@ public class OI {
     protected static OI instance;
     
     public static OI getInstance(){
-		if(instance == null){
-			instance = new OI();
-		}
-		return instance;
-	}
+        if(instance == null){
+                instance = new OI();
+        }
+        return instance;
+    }
 
     private OI() {
         shootStick = new Joystick(RobotMap.shootStickPort);
@@ -105,14 +105,6 @@ public class OI {
         raise.whileHeld(new RaiseShooter());
         lower.whileHeld(new LowerShooter());
         aim.whenPressed(new AimSeq());
-        lowermin.whenPressed(new LowerMin());
-        raisemax.whenPressed(new RaiseMax());
-        fire.whenPressed(new Load());
-        changedriveleft.whenPressed(new ChangeDriveMode());
-        changedriveright.whenPressed(new ChangeDriveMode());
-        compressor.whenPressed(new Pressurize());
-        hooksleft.whenPressed(new Lift());
-        hooksright.whenPressed(new Lift());
         
     }
     
