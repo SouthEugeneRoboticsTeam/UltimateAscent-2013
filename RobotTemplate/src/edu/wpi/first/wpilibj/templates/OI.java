@@ -73,11 +73,11 @@ public class OI {
     protected static OI instance;
     
     public static OI getInstance(){
-		if(instance == null){
-			instance = new OI();
-		}
-		return instance;
-	}
+        if(instance == null){
+            instance = new OI();
+        }
+        return instance;
+    }
 
     private OI() {
         shootStick = new Joystick(RobotMap.shootStickPort);
@@ -112,8 +112,8 @@ public class OI {
         changedriveright.whenPressed(new ChangeDriveMode());
         compressor.whenPressed(new Pressurize());
         hooksleft.whenPressed(new Lift());
-        hooksright.whenPressed(new Lift());
-        
+        hooksright.whenPressed(new Lift());  
+        System.out.println("Tied");
     }
     
     public Joystick getLeftStick() {

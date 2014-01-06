@@ -7,8 +7,7 @@ import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.templates.OI;
 import edu.wpi.first.wpilibj.templates.RobotMap;
-import edu.wpi.first.wpilibj.templates.commands.ArcadeDrive;
-import edu.wpi.first.wpilibj.templates.commands.TankDrive;
+import edu.wpi.first.wpilibj.templates.commands.Drive;
 
 /**
  *
@@ -17,31 +16,36 @@ public class DriveSub extends Subsystem {
     RobotDrive drive;
     private boolean arcadedrive = true;
     
-    public DriveSub() throws CANTimeoutException {
-        drive = new RobotDrive(new CANJaguar(RobotMap.leftMotor1ID), new CANJaguar(RobotMap.leftMotor2ID), new CANJaguar(RobotMap.rightMotor1ID), new CANJaguar(RobotMap.rightMotor2ID));
+    public DriveSub() {
+        try {
+            drive = new RobotDrive(new CANJaguar(RobotMap.leftMotor1ID), new CANJaguar(RobotMap.leftMotor2ID), new CANJaguar(RobotMap.rightMotor1ID), new CANJaguar(RobotMap.rightMotor2ID));
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
     }
     
     public void changeDriveMode() {
+        arcadedrive = !arcadedrive;
+    }
+    
+    public void drive() {
         if (arcadedrive) {
-            setDefaultCommand(new TankDrive());
-            arcadedrive = false;
+            arcade();
         } else {
-            setDefaultCommand(new ArcadeDrive());
-            arcadedrive = true;
-            System.out.println("ArcadeDrive");
+            tank();
         }
     }
     
     public void tank() {
-        drive.tankDrive(OI.getInstance().getRightStick().getY(), OI.getInstance().getLeftStick().getY());
+        drive.tankDrive(OI.getInstance().getLeftStick(), OI.getInstance().getRightStick());
     }
     
     public void arcade() {
-        drive.arcadeDrive(OI.getInstance().getLeftStick().getY(), -OI.getInstance().getLeftStick().getX());
+        drive.arcadeDrive(OI.getInstance().getLeftStick());
     }
     
     public void initDefaultCommand() {
-        setDefaultCommand(new ArcadeDrive());
+        setDefaultCommand(new Drive());
     }
 }
 
