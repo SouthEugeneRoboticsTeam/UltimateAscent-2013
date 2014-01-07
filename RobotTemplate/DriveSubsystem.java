@@ -1,12 +1,16 @@
-
-package edu.wpi.first.wpilibj.templates.subsystems;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
+ * @author Aubrey
  */
-public class ExampleSubsystem extends Subsystem {
+public class DriveSubsystem extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -15,4 +19,3 @@ public class ExampleSubsystem extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
 }
-

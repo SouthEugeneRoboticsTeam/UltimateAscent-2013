@@ -26,9 +26,14 @@ public class FiringSub extends Subsystem {
     DigitalInput loadLimit; 
     PIDController altitudePID;
     
-    public FiringSub() throws CANTimeoutException {
-        shooter = new CANJaguar(RobotMap.shooterID);
-        altitude = new CANJaguar(RobotMap.altitudeID);
+    public FiringSub() {
+        try {
+            shooter = new CANJaguar(RobotMap.shooterID);
+            altitude = new CANJaguar(RobotMap.altitudeID);
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
+        
         loader = new Victor(RobotMap.loaderID);
         altitudePot = new AnalogChannel(RobotMap.altitudePotPort);
         loadLimit = new DigitalInput(RobotMap.loadLimitID);
@@ -72,17 +77,6 @@ public class FiringSub extends Subsystem {
     }
     
     public void altitudeSetpoint(double setpoint) throws CANTimeoutException {
-        //altitude.changeControlMode(CANJaguar.ControlMode.kPosition);
-        //altitude.setPositionReference(CANJaguar.PositionReference.kPotentiometer);
-        //altitude.setPID(0, 0, 0);
-        //double setpoint = SmartDashboard.getNumber("setpoint", RobotMap.midAltitude);
-        //altitude.setX(setpoint);
-        //altitudePID.enable();
-        //altitude.setX(.5);
-        //while (altitude.getOutputVoltage() > .1);
-        //altitude.changeControlMode(CANJaguar.ControlMode.kVoltage);
-        //stopAltitude();
-        
         altitudePID.setSetpoint(setpoint);
         altitude.setX(altitudePID.get());
     }

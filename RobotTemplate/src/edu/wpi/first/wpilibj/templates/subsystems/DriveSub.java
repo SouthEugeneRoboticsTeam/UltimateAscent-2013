@@ -16,26 +16,32 @@ public class DriveSub extends Subsystem {
     RobotDrive drive;
     private boolean arcadedrive = true;
     
-    public DriveSub() throws CANTimeoutException {
-        drive = new RobotDrive(new CANJaguar(RobotMap.leftMotor1ID), new CANJaguar(RobotMap.leftMotor2ID), new CANJaguar(RobotMap.rightMotor1ID), new CANJaguar(RobotMap.rightMotor2ID));
+    public DriveSub() {
+        try {
+            drive = new RobotDrive(new CANJaguar(RobotMap.leftMotor1ID), new CANJaguar(RobotMap.leftMotor2ID), new CANJaguar(RobotMap.rightMotor1ID), new CANJaguar(RobotMap.rightMotor2ID));
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
     }
     
     public void changeDriveMode() {
-        if (arcadedrive) {
-            arcadedrive = false;
-            System.out.println("Tank Drive");
-        } else {
-            arcadedrive = true;
-            System.out.println("Arcade Drive");
-        }
+        arcadedrive = !arcadedrive;
     }
     
     public void drive() {
         if (arcadedrive) {
-            drive.tankDrive(OI.getInstance().getLeftStick(), OI.getInstance().getRightStick());
+            arcade();
         } else {
-            drive.arcadeDrive(OI.getInstance().getLeftStick());
+            tank();
         }
+    }
+    
+    public void tank() {
+        drive.tankDrive(OI.getInstance().getLeftStick(), OI.getInstance().getRightStick());
+    }
+    
+    public void arcade() {
+        drive.arcadeDrive(OI.getInstance().getLeftStick());
     }
     
     public void initDefaultCommand() {
